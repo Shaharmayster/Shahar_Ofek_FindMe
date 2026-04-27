@@ -1,0 +1,76 @@
+<resources>
+    <string name="app_name">FindMe</string>
+
+    <string name="splash_title">Find lost moments, beautifully.</string>
+    <string name="splash_subtitle">A calm social space for sharing pet-inspired posts, profiles, and playful discoveries.</string>
+
+    <string name="login_screen_title">Welcome back</string>
+    <string name="login_screen_subtitle">Sign in to continue exploring the latest posts and saved profile details.</string>
+    <string name="register_screen_title">Create your account</string>
+    <string name="register_screen_subtitle">Join the community and start publishing polished pet-friendly posts.</string>
+    <string name="hint_email">Email address</string>
+    <string name="hint_password">Password</string>
+    <string name="login">Log in</string>
+    <string name="register">Register</string>
+    <string name="go_to_register">Need an account? Register</string>
+    <string name="go_to_login">Already have an account? Log in</string>
+
+    <string name="feed_title">Discover the latest posts</string>
+    <string name="feed_subtitle">Swipe down to refresh, publish a new post, or jump into your profile and API extras.</string>
+    <string name="feed_empty_title">No posts yet</string>
+    <string name="feed_empty_message">Create the first post and give the feed something delightful to show.</string>
+    <string name="add_post">New post</string>
+    <string name="add_post_desc">Create a new post</string>
+
+    <string name="my_posts">My posts</string>
+    <string name="my_posts_title">Your posts</string>
+    <string name="my_posts_subtitle">Edit or remove the posts you have already shared.</string>
+    <string name="my_posts_empty">You have not shared any posts yet.</string>
+
+    <string name="create_post_title">Create or update a post</string>
+    <string name="create_post_subtitle">Choose a photo, write a short caption, and publish it with a clean presentation.</string>
+    <string name="post_text_hint">Write a short caption</string>
+    <string name="add_photo_hint">Tap the image area to choose a photo</string>
+    <string name="submit">Publish post</string>
+    <string name="update">Update post</string>
+    <string name="back">Back</string>
+    <string name="create_post_image_desc">Selected post image</string>
+
+    <string name="profile_title">Profile</string>
+    <string name="profile_subtitle">Keep your public profile tidy with a name and avatar that feel personal.</string>
+    <string name="user_id">User ID</string>
+    <string name="hint_display_name">Display name</string>
+    <string name="save">Save changes</string>
+    <string name="logout">Log out</string>
+    <string name="back_to_feed">Back to feed</string>
+    <string name="profile_saved">Profile saved</string>
+    <string name="profile_image_desc">Profile image</string>
+    <string name="default_profile_name">Pet Lover</string>
+
+    <string name="external_posts_button">Animal facts</string>
+    <string name="api_screen_title">Animal facts</string>
+    <string name="api_screen_subtitle">A lightweight public API demo with local caching for a smoother offline experience.</string>
+    <string name="api_empty_title">No data available</string>
+    <string name="api_empty_message">Pull to refresh or retry once you have a connection again.</string>
+    <string name="retry">Retry</string>
+    <string name="animal_fact">Animal fact</string>
+
+    <string name="edit">Edit</string>
+    <string name="delete">Delete</string>
+    <string name="cancel">Cancel</string>
+    <string name="delete_post_title">Delete post?</string>
+    <string name="delete_post_message">This action removes the post from your feed and cannot be undone.</string>
+
+    <string name="error_empty_credentials">Email and password cannot be empty.</string>
+    <string name="error_auth_failed">Authentication failed: %1$s</string>
+    <string name="error_offline_mode">Offline mode: %1$s</string>
+    <string name="error_load_post">Failed to load post: %1$s</string>
+    <string name="error_text_required">Post text is required.</string>
+    <string name="error_save_post">Failed to save post: %1$s</string>
+    <string name="error_network_cached">Network unavailable. Showing cached data.</string>
+    <string name="error_load_profile">Failed to load profile: %1$s</string>
+    <string name="error_save_profile">Failed to save profile: %1$s</string>
+    <string name="error_delete_post">Failed to delete the post: %1$s</string>
+    <string name="error_user_not_logged_in">User is not logged in.</string>
+    <string name="error_unknown_reason">Please try again.</string>
+</resources>

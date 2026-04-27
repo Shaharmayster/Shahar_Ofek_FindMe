@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape android:shape="rectangle">
+            <corners android:radius="@dimen/radius_large" />
+            <gradient
+                android:angle="315"
+                android:endColor="@color/placeholder_end"
+                android:startColor="@color/placeholder_start" />
+        </shape>
+    </item>
+
+    <item
+        android:gravity="center"
+        android:width="56dp"
+        android:height="44dp"
+        android:drawable="@drawable/ic_paw_print" />
+</layer-list>

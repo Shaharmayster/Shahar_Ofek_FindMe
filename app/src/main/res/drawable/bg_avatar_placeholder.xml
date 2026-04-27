@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape android:shape="oval">
+            <gradient
+                android:angle="315"
+                android:endColor="@color/placeholder_avatar_end"
+                android:startColor="@color/placeholder_avatar_start" />
+        </shape>
+    </item>
+
+    <item
+        android:gravity="center"
+        android:width="52dp"
+        android:height="40dp"
+        android:drawable="@drawable/ic_paw_print" />
+</layer-list>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="@dimen/space_2"
+    android:layout_marginTop="@dimen/space_2"
+    android:layout_marginBottom="@dimen/space_2"
+    app:cardBackgroundColor="@color/findme_surface"
+    app:cardCornerRadius="@dimen/radius_large"
+    app:cardElevation="@dimen/card_elevation"
+    app:strokeColor="@color/findme_outline"
+    app:strokeWidth="@dimen/card_stroke">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/space_4">
+
+        <TextView
+            android:id="@+id/post_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
+            android:textColor="@color/findme_on_surface"
+            tools:text="Golden hour with the neighborhood dog walkers." />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/post_image"
+            android:layout_width="match_parent"
+            android:layout_height="212dp"
+            android:layout_marginTop="@dimen/space_3"
+            android:contentDescription="@string/create_post_image_desc"
+            android:scaleType="centerCrop"
+            android:src="@drawable/bg_media_placeholder"
+            app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.FindMe.Media"
+            app:strokeColor="@color/findme_outline"
+            app:strokeWidth="@dimen/card_stroke" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            android:orientation="horizontal"
+            android:paddingTop="@dimen/space_2">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/edit_button"
+                style="@style/Widget.FindMe.Button.Text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/edit" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/delete_button"
+                style="@style/Widget.FindMe.Button.Text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/delete"
+                android:textColor="@color/findme_error" />
+        </LinearLayout>
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>

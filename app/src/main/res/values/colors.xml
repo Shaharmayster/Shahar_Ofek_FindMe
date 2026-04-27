@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="findme_primary">#7B5A4D</color>
+    <color name="findme_on_primary">#FFFFFFFF</color>
+    <color name="findme_primary_container">#F5DED3</color>
+    <color name="findme_on_primary_container">#2F160E</color>
+
+    <color name="findme_secondary">#9A6B39</color>
+    <color name="findme_on_secondary">#FFFFFFFF</color>
+    <color name="findme_secondary_container">#FFE0C1</color>
+    <color name="findme_on_secondary_container">#311300</color>
+
+    <color name="findme_tertiary">#4E7C74</color>
+    <color name="findme_on_tertiary">#FFFFFFFF</color>
+    <color name="findme_tertiary_container">#D0ECE5</color>
+    <color name="findme_on_tertiary_container">#08201B</color>
+
+    <color name="findme_background">#FFF8F2</color>
+    <color name="findme_background_alt">#F8F1EA</color>
+    <color name="findme_surface">#FFFFFBFF</color>
+    <color name="findme_surface_tonal">#FFF5ED</color>
+    <color name="findme_surface_variant">#F3E0D2</color>
+    <color name="findme_surface_container">#FFF3EB</color>
+    <color name="findme_surface_container_high">#F8ECE2</color>
+    <color name="findme_on_surface">#231916</color>
+    <color name="findme_on_surface_variant">#5F4B43</color>
+    <color name="findme_outline">#C7B3A6</color>
+    <color name="findme_ripple">#1A7B5A4D</color>
+    <color name="findme_error">#BA1A1A</color>
+    <color name="findme_on_error">#FFFFFFFF</color>
+
+    <color name="screen_gradient_start">#FFFDF9</color>
+    <color name="screen_gradient_end">#F6EBDD</color>
+    <color name="screen_blob_top">#33D59B6A</color>
+    <color name="screen_blob_bottom">#339EC6BE</color>
+    <color name="paw_tint">#B77B5A4D</color>
+    <color name="paw_tint_soft">#337B5A4D</color>
+
+    <color name="placeholder_start">#F6E7DB</color>
+    <color name="placeholder_end">#EEDBCC</color>
+    <color name="placeholder_avatar_start">#F4DCC9</color>
+    <color name="placeholder_avatar_end">#E7C8B1</color>
+
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+</resources>

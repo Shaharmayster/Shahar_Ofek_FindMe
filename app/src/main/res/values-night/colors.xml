@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="findme_primary">#E7BEA8</color>
+    <color name="findme_on_primary">#472A1F</color>
+    <color name="findme_primary_container">#624337</color>
+    <color name="findme_on_primary_container">#FFF5F0</color>
+
+    <color name="findme_secondary">#F0BD8A</color>
+    <color name="findme_on_secondary">#512B05</color>
+    <color name="findme_secondary_container">#704219</color>
+    <color name="findme_on_secondary_container">#FFF4EA</color>
+
+    <color name="findme_tertiary">#B0D3CB</color>
+    <color name="findme_on_tertiary">#1D3530</color>
+    <color name="findme_tertiary_container">#355049</color>
+    <color name="findme_on_tertiary_container">#E5FFFA</color>
+
+    <color name="findme_background">#171211</color>
+    <color name="findme_background_alt">#211918</color>
+    <color name="findme_surface">#211918</color>
+    <color name="findme_surface_tonal">#2C211E</color>
+    <color name="findme_surface_variant">#4D3C35</color>
+    <color name="findme_surface_container">#2A211E</color>
+    <color name="findme_surface_container_high">#352925</color>
+    <color name="findme_on_surface">#F2DFD7</color>
+    <color name="findme_on_surface_variant">#D9C2B6</color>
+    <color name="findme_outline">#9E887D</color>
+    <color name="findme_ripple">#26E7BEA8</color>
+    <color name="findme_error">#FFB4AB</color>
+    <color name="findme_on_error">#690005</color>
+
+    <color name="screen_gradient_start">#1D1615</color>
+    <color name="screen_gradient_end">#2A201D</color>
+    <color name="screen_blob_top">#334E7C74</color>
+    <color name="screen_blob_bottom">#33624337</color>
+    <color name="paw_tint">#80E7BEA8</color>
+    <color name="paw_tint_soft">#26E7BEA8</color>
+
+    <color name="placeholder_start">#3C2F2B</color>
+    <color name="placeholder_end">#4A3A34</color>
+    <color name="placeholder_avatar_start">#59463F</color>
+    <color name="placeholder_avatar_end">#725B52</color>
+</resources>

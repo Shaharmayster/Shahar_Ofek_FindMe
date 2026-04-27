@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_screen_surface"
+    android:paddingStart="@dimen/space_4"
+    android:paddingEnd="@dimen/space_4"
+    android:paddingTop="@dimen/space_4"
+    tools:context=".FeedFragment">
+
+    <ImageView
+        android:layout_width="88dp"
+        android:layout_height="68dp"
+        android:alpha="0.24"
+        android:contentDescription="@null"
+        android:src="@drawable/ic_paw_print"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/header_card"
+        style="@style/Widget.FindMe.Card.Hero"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/space_2"
+        android:layout_marginTop="@dimen/space_2"
+        android:layout_marginEnd="@dimen/space_2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/space_5">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/feed_title"
+                android:textAppearance="@style/TextAppearance.Material3.HeadlineSmall" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_2"
+                android:text="@string/feed_subtitle"
+                android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
+                android:textColor="@color/findme_on_surface_variant" />
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <TextView
+        android:id="@+id/error_text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/space_3"
+        android:layout_marginTop="@dimen/space_3"
+        android:layout_marginEnd="@dimen/space_3"
+        android:textColor="@color/findme_error"
+        android:textStyle="bold"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/header_card"
+        tools:text="Offline mode: cached feed only." />
+
+    <com.google.android.material.progressindicator.LinearProgressIndicator
+        android:id="@+id/progress_bar"
+        style="@style/Widget.FindMe.Progress.Linear"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/space_2"
+        android:layout_marginTop="@dimen/space_2"
+        android:layout_marginEnd="@dimen/space_2"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/error_text" />
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipe_refresh_layout"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/space_3"
+        app:layout_constraintBottom_toTopOf="@id/bottom_actions_card"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/progress_bar">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/posts_recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:clipToPadding="false"
+                android:layoutAnimation="@anim/layout_list_fade_in"
+                android:paddingStart="@dimen/space_2"
+                android:paddingTop="@dimen/space_2"
+                android:paddingEnd="@dimen/space_2"
+                android:paddingBottom="120dp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/empty_state_container"
+                style="@style/Widget.FindMe.Card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="@dimen/space_6"
+                android:visibility="gone">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical"
+                    android:padding="@dimen/space_6">
+
+                    <ImageView
+                        android:layout_width="72dp"
+                        android:layout_height="56dp"
+                        android:contentDescription="@null"
+                        android:src="@drawable/ic_paw_print" />
+
+                    <TextView
+                        android:id="@+id/empty_state_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/space_4"
+                        android:gravity="center"
+                        android:text="@string/feed_empty_title"
+                        android:textAppearance="@style/TextAppearance.Material3.TitleMedium" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/space_2"
+                        android:gravity="center"
+                        android:text="@string/feed_empty_message"
+                        android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
+                        android:textColor="@color/findme_on_surface_variant" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+        </FrameLayout>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/bottom_actions_card"
+        style="@style/Widget.FindMe.Card"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/space_2"
+        android:layout_marginEnd="@dimen/space_2"
+        android:layout_marginBottom="@dimen/space_3"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <LinearLayout
+            android:id="@+id/bottom_actions"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="@dimen/space_3">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/my_posts_button"
+                style="@style/Widget.FindMe.Button.Secondary"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/space_2"
+                android:layout_weight="1"
+                android:text="@string/my_posts" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/api_screen_button"
+                style="@style/Widget.FindMe.Button.Secondary"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/space_2"
+                android:layout_weight="1"
+                android:text="@string/external_posts_button" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/go_profile_button"
+                style="@style/Widget.FindMe.Button.Secondary"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/profile_title" />
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/add_post_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/space_4"
+        android:layout_marginBottom="@dimen/space_4"
+        android:contentDescription="@string/add_post_desc"
+        android:src="@android:drawable/ic_input_add"
+        app:layout_constraintBottom_toTopOf="@id/bottom_actions_card"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:tint="@color/findme_on_primary" />
+</androidx.constraintlayout.widget.ConstraintLayout>

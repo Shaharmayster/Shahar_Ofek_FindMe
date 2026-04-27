@@ -1,0 +1,33 @@
+<resources>
+    <style name="Base.Theme.FindMe_Shahar_Ofek" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/findme_primary</item>
+        <item name="colorOnPrimary">@color/findme_on_primary</item>
+        <item name="colorPrimaryContainer">@color/findme_primary_container</item>
+        <item name="colorOnPrimaryContainer">@color/findme_on_primary_container</item>
+        <item name="colorSecondary">@color/findme_secondary</item>
+        <item name="colorOnSecondary">@color/findme_on_secondary</item>
+        <item name="colorSecondaryContainer">@color/findme_secondary_container</item>
+        <item name="colorOnSecondaryContainer">@color/findme_on_secondary_container</item>
+        <item name="colorTertiary">@color/findme_tertiary</item>
+        <item name="colorOnTertiary">@color/findme_on_tertiary</item>
+        <item name="colorTertiaryContainer">@color/findme_tertiary_container</item>
+        <item name="colorOnTertiaryContainer">@color/findme_on_tertiary_container</item>
+        <item name="colorSurface">@color/findme_surface</item>
+        <item name="android:colorBackground">@color/findme_background</item>
+        <item name="colorSurfaceVariant">@color/findme_surface_variant</item>
+        <item name="colorOnSurface">@color/findme_on_surface</item>
+        <item name="colorOnSurfaceVariant">@color/findme_on_surface_variant</item>
+        <item name="colorOutline">@color/findme_outline</item>
+        <item name="colorError">@color/findme_error</item>
+        <item name="colorOnError">@color/findme_on_error</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@color/findme_background</item>
+        <item name="android:windowBackground">@color/findme_background</item>
+        <item name="materialCardViewElevatedStyle">@style/Widget.FindMe.Card</item>
+        <item name="shapeAppearanceMediumComponent">@style/ShapeAppearanceOverlay.FindMe.Component</item>
+        <item name="shapeAppearanceLargeComponent">@style/ShapeAppearanceOverlay.FindMe.Component.Large</item>
+        <item name="materialAlertDialogTheme">@style/ThemeOverlay.FindMe.AlertDialog</item>
+    </style>
+
+    <style name="Theme.FindMe_Shahar_Ofek" parent="Base.Theme.FindMe_Shahar_Ofek" />
+</resources>
