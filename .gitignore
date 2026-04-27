@@ -19,6 +19,7 @@ captures/
 *.log
 
 # Firebase local backup files
+app/google-services.json
 google-services*.bak
 google-services*.backup
 google-services*.old
