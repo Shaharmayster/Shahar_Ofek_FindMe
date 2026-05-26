@@ -21,9 +21,13 @@ class PostRepository(
     private val storage: FirebaseStorage = FirebaseStorage.getInstance(),
     private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO
 ) {
+    private val syncPrefs = appContext.getSharedPreferences(SYNC_PREFS, Context.MODE_PRIVATE)
+
     fun observeFeedPosts(): Flow<List<PostEntity>> = postDao.observeAll()
 
     fun observePostsByUser(userId: String): Flow<List<PostEntity>> = postDao.observeByUser(userId)
+
+    fun lastSyncedAt(): Long = syncPrefs.getLong(KEY_LAST_SYNCED_AT, 0L)
 
     suspend fun syncPosts(limit: Long = 50) = withContext(ioDispatcher) {
         val snapshot = firestore.collection(POSTS_COLLECTION)
@@ -37,6 +41,7 @@ class PostRepository(
             remote.copy(localImagePath = cached?.localImagePath)
         }
         postDao.replaceAll(posts)
+        syncPrefs.edit().putLong(KEY_LAST_SYNCED_AT, System.currentTimeMillis()).apply()
     }
 
     suspend fun getPostById(postId: String): PostEntity? = withContext(ioDispatcher) {
@@ -48,6 +53,7 @@ class PostRepository(
     suspend fun createOrUpdatePost(
         postId: String?,
         title: String,
+        category: String,
         imageUri: Uri?
     ): PostEntity = withContext(ioDispatcher) {
         val userId = authRepository.currentUserId()
@@ -74,6 +80,7 @@ class PostRepository(
             id = resolvedPostId,
             userId = userId,
             title = title.trim(),
+            category = category.ifBlank { PostEntity.DEFAULT_CATEGORY },
             imageUrl = imageUrl,
             localImagePath = localImagePath,
             createdAt = existing?.createdAt ?: System.currentTimeMillis()
@@ -107,5 +114,7 @@ class PostRepository(
 
     private companion object {
         const val POSTS_COLLECTION = "posts"
+        const val SYNC_PREFS = "post_sync"
+        const val KEY_LAST_SYNCED_AT = "last_synced_at"
     }
 }

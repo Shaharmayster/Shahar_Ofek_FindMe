@@ -4,11 +4,13 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.migration.Migration
+import androidx.sqlite.db.SupportSQLiteDatabase
 
 /** Single Room database that stores app and API cache entities. */
 @Database(
     entities = [PostEntity::class, ApiPostEntity::class, UserProfileEntity::class],
-    version = 4,
+    version = 5,
     exportSchema = false
 )
 abstract class AppDatabase : RoomDatabase() {
@@ -27,10 +29,16 @@ abstract class AppDatabase : RoomDatabase() {
                     AppDatabase::class.java,
                     "findme_database"
                 )
-                    .fallbackToDestructiveMigration()
+                    .addMigrations(MIGRATION_4_5)
                     .build()
                 INSTANCE = instance
                 instance
+            }
+        }
+
+        private val MIGRATION_4_5 = object : Migration(4, 5) {
+            override fun migrate(db: SupportSQLiteDatabase) {
+                db.execSQL("ALTER TABLE posts ADD COLUMN category TEXT NOT NULL DEFAULT 'Moment'")
             }
         }
     }

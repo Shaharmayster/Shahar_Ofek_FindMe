@@ -37,7 +37,8 @@ class LoginFragment : Fragment() {
         }
 
         binding.goRegisterButton.setOnClickListener {
-            findNavController().navigate(R.id.action_loginFragment_to_registerFragment)
+            val action = LoginFragmentDirections.actionLoginFragmentToRegisterFragment()
+            findNavController().navigate(action)
         }
 
         viewModel.isLoading.observe(viewLifecycleOwner) { loading ->
@@ -57,7 +58,8 @@ class LoginFragment : Fragment() {
         viewModel.isLoggedIn.observe(viewLifecycleOwner) { loggedIn ->
             if (loggedIn) {
                 viewModel.clearLoggedInEvent()
-                findNavController().navigate(R.id.action_loginFragment_to_feedFragment)
+                val action = LoginFragmentDirections.actionLoginFragmentToFeedFragment()
+                findNavController().navigate(action)
             }
         }
     }

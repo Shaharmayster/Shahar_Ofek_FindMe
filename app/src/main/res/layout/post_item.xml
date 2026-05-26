@@ -27,6 +27,20 @@
             android:textColor="@color/findme_on_surface"
             tools:text="Golden hour with the neighborhood dog walkers." />
 
+        <TextView
+            android:id="@+id/post_category"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_2"
+            android:background="@drawable/bg_category_chip"
+            android:paddingStart="@dimen/space_3"
+            android:paddingTop="@dimen/space_1"
+            android:paddingEnd="@dimen/space_3"
+            android:paddingBottom="@dimen/space_1"
+            android:textAppearance="@style/TextAppearance.Material3.LabelMedium"
+            android:textColor="@color/findme_on_tertiary_container"
+            tools:text="Lost" />
+
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/post_image"
             android:layout_width="match_parent"

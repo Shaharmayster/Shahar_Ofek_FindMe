@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.findme_shahar_ofek.databinding.FragmentFeedBinding
+import com.google.android.material.snackbar.Snackbar
 
 /** Main feed screen that shows cached posts and refreshes from Firestore. */
 class FeedFragment : Fragment() {
@@ -38,19 +39,23 @@ class FeedFragment : Fragment() {
         )
 
         binding.addPostButton.setOnClickListener {
-            findNavController().navigate(R.id.action_feedFragment_to_createPostFragment)
+            val action = FeedFragmentDirections.actionFeedFragmentToCreatePostFragment(null)
+            findNavController().navigate(action)
         }
 
         binding.myPostsButton.setOnClickListener {
-            findNavController().navigate(R.id.action_feedFragment_to_myPostsFragment)
+            val action = FeedFragmentDirections.actionFeedFragmentToMyPostsFragment()
+            findNavController().navigate(action)
         }
 
         binding.apiScreenButton.setOnClickListener {
-            findNavController().navigate(R.id.action_feedFragment_to_apiFragment)
+            val action = FeedFragmentDirections.actionFeedFragmentToApiFragment()
+            findNavController().navigate(action)
         }
 
         binding.goProfileButton.setOnClickListener {
-            findNavController().navigate(R.id.action_feedFragment_to_profileFragment)
+            val action = FeedFragmentDirections.actionFeedFragmentToProfileFragment()
+            findNavController().navigate(action)
         }
 
         binding.swipeRefreshLayout.setOnRefreshListener {
@@ -73,10 +78,29 @@ class FeedFragment : Fragment() {
             binding.errorText.isVisible = !error.isNullOrBlank()
             binding.errorText.text = error
         }
+
+        viewModel.lastSyncText.observe(viewLifecycleOwner) { lastSyncText ->
+            binding.lastSyncText.isVisible = !lastSyncText.isNullOrBlank()
+            binding.lastSyncText.text = lastSyncText
+        }
+
+        findNavController().currentBackStackEntry
+            ?.savedStateHandle
+            ?.getLiveData<String>(POST_RESULT_KEY)
+            ?.observe(viewLifecycleOwner) { message ->
+                if (!message.isNullOrBlank()) {
+                    Snackbar.make(binding.root, message, Snackbar.LENGTH_SHORT).show()
+                    findNavController().currentBackStackEntry?.savedStateHandle?.remove<String>(POST_RESULT_KEY)
+                }
+            }
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private companion object {
+        const val POST_RESULT_KEY = "post_result"
     }
 }

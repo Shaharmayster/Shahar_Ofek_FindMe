@@ -68,6 +68,21 @@
         app:layout_constraintTop_toBottomOf="@id/header_card"
         tools:text="Offline mode: cached feed only." />
 
+    <TextView
+        android:id="@+id/last_sync_text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/space_3"
+        android:layout_marginTop="@dimen/space_2"
+        android:layout_marginEnd="@dimen/space_3"
+        android:textAppearance="@style/TextAppearance.Material3.BodySmall"
+        android:textColor="@color/findme_on_surface_variant"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/error_text"
+        tools:text="Last synced: May 26, 2026, 4:00 PM" />
+
     <com.google.android.material.progressindicator.LinearProgressIndicator
         android:id="@+id/progress_bar"
         style="@style/Widget.FindMe.Progress.Linear"
@@ -79,7 +94,7 @@
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/error_text" />
+        app:layout_constraintTop_toBottomOf="@id/last_sync_text" />
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/swipe_refresh_layout"

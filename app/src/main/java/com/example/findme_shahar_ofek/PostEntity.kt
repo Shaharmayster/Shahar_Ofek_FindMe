@@ -13,7 +13,12 @@ data class PostEntity(
     @PrimaryKey val id: String = "",
     val userId: String = "",
     val title: String = "",
+    val category: String = DEFAULT_CATEGORY,
     val imageUrl: String? = null,
     @get:Exclude val localImagePath: String? = null,
     val createdAt: Long = System.currentTimeMillis()
-) : Parcelable
+) : Parcelable {
+    companion object {
+        const val DEFAULT_CATEGORY = "Moment"
+    }
+}

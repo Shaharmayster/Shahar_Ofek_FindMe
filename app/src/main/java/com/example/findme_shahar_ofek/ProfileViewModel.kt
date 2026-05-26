@@ -56,12 +56,22 @@ class ProfileViewModel(application: Application) : AndroidViewModel(application)
 
     fun save(displayName: String, imageUri: Uri?) {
         val userId = currentUserId ?: return
+        val trimmedName = displayName.trim()
+        if (trimmedName.isBlank()) {
+            _error.value = text(R.string.error_display_name_required)
+            return
+        }
+        if (trimmedName.length > MAX_DISPLAY_NAME_LENGTH) {
+            _error.value = text(R.string.error_display_name_too_long, MAX_DISPLAY_NAME_LENGTH)
+            return
+        }
+
         viewModelScope.launch {
             _isLoading.value = true
             _error.value = null
             _saveSuccess.value = false
             try {
-                profileRepository.saveProfile(userId, displayName, imageUri)
+                profileRepository.saveProfile(userId, trimmedName, imageUri)
                 _saveSuccess.value = true
             } catch (e: Exception) {
                 _error.value = text(R.string.error_save_profile, reason(e))
@@ -77,5 +87,9 @@ class ProfileViewModel(application: Application) : AndroidViewModel(application)
 
     fun logout() {
         authRepository.logout()
+    }
+
+    private companion object {
+        const val MAX_DISPLAY_NAME_LENGTH = 80
     }
 }

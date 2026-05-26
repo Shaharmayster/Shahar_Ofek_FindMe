@@ -29,6 +29,11 @@
 
     <string name="create_post_title">Create or update a post</string>
     <string name="create_post_subtitle">Choose a photo, write a short caption, and publish it with a clean presentation.</string>
+    <string name="post_category_label">Post category</string>
+    <string name="category_lost">Lost</string>
+    <string name="category_found">Found</string>
+    <string name="category_moment">Moment</string>
+    <string name="category_tip">Tip</string>
     <string name="post_text_hint">Write a short caption</string>
     <string name="add_photo_hint">Tap the image area to choose a photo</string>
     <string name="submit">Publish post</string>
@@ -60,16 +65,23 @@
     <string name="cancel">Cancel</string>
     <string name="delete_post_title">Delete post?</string>
     <string name="delete_post_message">This action removes the post from your feed and cannot be undone.</string>
+    <string name="post_created">Post created.</string>
+    <string name="post_updated">Post updated.</string>
+    <string name="post_deleted">Post deleted.</string>
+    <string name="last_synced_at">Last synced: %1$s</string>
 
     <string name="error_empty_credentials">Email and password cannot be empty.</string>
     <string name="error_auth_failed">Authentication failed: %1$s</string>
     <string name="error_offline_mode">Offline mode: %1$s</string>
     <string name="error_load_post">Failed to load post: %1$s</string>
     <string name="error_text_required">Post text is required.</string>
+    <string name="error_post_text_too_long">Post text must be %1$d characters or fewer.</string>
     <string name="error_save_post">Failed to save post: %1$s</string>
     <string name="error_network_cached">Network unavailable. Showing cached data.</string>
     <string name="error_load_profile">Failed to load profile: %1$s</string>
     <string name="error_save_profile">Failed to save profile: %1$s</string>
+    <string name="error_display_name_required">Display name is required.</string>
+    <string name="error_display_name_too_long">Display name must be %1$d characters or fewer.</string>
     <string name="error_delete_post">Failed to delete the post: %1$s</string>
     <string name="error_user_not_logged_in">User is not logged in.</string>
     <string name="error_unknown_reason">Please try again.</string>

@@ -62,7 +62,8 @@ class ProfileFragment : Fragment() {
 
         binding.logoutButton.setOnClickListener {
             viewModel.logout()
-            findNavController().navigate(R.id.action_profileFragment_to_loginFragment)
+            val action = ProfileFragmentDirections.actionProfileFragmentToLoginFragment()
+            findNavController().navigate(action)
         }
 
         binding.backToFeedButton.setOnClickListener {

@@ -14,6 +14,7 @@ import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.example.findme_shahar_ofek.databinding.FragmentCreatePostBinding
+import com.google.android.material.chip.Chip
 import com.google.android.material.snackbar.Snackbar
 
 /** Screen for creating and editing posts with optional image upload. */
@@ -50,6 +51,7 @@ class CreatePostFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        setupCategoryChips()
         viewModel.loadPost(args.postId)
         binding.postImageView.setImageResource(R.drawable.bg_media_placeholder)
 
@@ -61,6 +63,7 @@ class CreatePostFragment : Fragment() {
             viewModel.submitPost(
                 postId = args.postId,
                 title = binding.titleEditText.text.toString(),
+                category = selectedCategory(),
                 imageUri = selectedImageUri
             )
         }
@@ -73,6 +76,7 @@ class CreatePostFragment : Fragment() {
             if (post != null) {
                 binding.titleEditText.setText(post.title)
                 binding.submitButton.text = getString(R.string.update)
+                selectCategory(post.category)
                 val hasSavedImage = ImageCache.existingFileOrNull(post.localImagePath) != null ||
                     !post.imageUrl.isNullOrBlank()
                 if (selectedImageUri == null && hasSavedImage) {
@@ -107,7 +111,39 @@ class CreatePostFragment : Fragment() {
         viewModel.savedPostId.observe(viewLifecycleOwner) { savedPostId ->
             if (!savedPostId.isNullOrBlank()) {
                 viewModel.clearSaveEvent()
+                findNavController().previousBackStackEntry?.savedStateHandle?.set(
+                    POST_RESULT_KEY,
+                    getString(if (args.postId.isNullOrBlank()) R.string.post_created else R.string.post_updated)
+                )
                 findNavController().navigateUp()
+            }
+        }
+    }
+
+    private fun setupCategoryChips() {
+        viewModel.categories.forEach { category ->
+            val chip = Chip(requireContext()).apply {
+                id = View.generateViewId()
+                text = category
+                isCheckable = true
+            }
+            binding.categoryChipGroup.addView(chip)
+        }
+        selectCategory(PostEntity.DEFAULT_CATEGORY)
+    }
+
+    private fun selectedCategory(): String {
+        val checkedChipId = binding.categoryChipGroup.checkedChipId
+        val chip = binding.categoryChipGroup.findViewById<Chip>(checkedChipId)
+        return chip?.text?.toString().orEmpty().ifBlank { PostEntity.DEFAULT_CATEGORY }
+    }
+
+    private fun selectCategory(category: String) {
+        for (index in 0 until binding.categoryChipGroup.childCount) {
+            val chip = binding.categoryChipGroup.getChildAt(index) as? Chip ?: continue
+            if (chip.text.toString() == category.ifBlank { PostEntity.DEFAULT_CATEGORY }) {
+                chip.isChecked = true
+                return
             }
         }
     }
@@ -115,5 +151,9 @@ class CreatePostFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private companion object {
+        const val POST_RESULT_KEY = "post_result"
     }
 }

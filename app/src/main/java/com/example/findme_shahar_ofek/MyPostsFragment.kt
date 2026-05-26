@@ -10,6 +10,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.findme_shahar_ofek.databinding.FragmentMyPostsBinding
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.android.material.snackbar.Snackbar
 
 /** Screen that shows only current user's posts and supports edit/delete. */
 class MyPostsFragment : Fragment() {
@@ -73,10 +74,31 @@ class MyPostsFragment : Fragment() {
             binding.errorText.isVisible = !error.isNullOrBlank()
             binding.errorText.text = error
         }
+
+        viewModel.deleteSuccess.observe(viewLifecycleOwner) { deleted ->
+            if (deleted) {
+                viewModel.clearDeleteSuccess()
+                Snackbar.make(binding.root, R.string.post_deleted, Snackbar.LENGTH_SHORT).show()
+            }
+        }
+
+        findNavController().currentBackStackEntry
+            ?.savedStateHandle
+            ?.getLiveData<String>(POST_RESULT_KEY)
+            ?.observe(viewLifecycleOwner) { message ->
+                if (!message.isNullOrBlank()) {
+                    Snackbar.make(binding.root, message, Snackbar.LENGTH_SHORT).show()
+                    findNavController().currentBackStackEntry?.savedStateHandle?.remove<String>(POST_RESULT_KEY)
+                }
+            }
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private companion object {
+        const val POST_RESULT_KEY = "post_result"
     }
 }

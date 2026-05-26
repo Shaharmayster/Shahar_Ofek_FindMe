@@ -30,6 +30,13 @@ class CreatePostViewModel(application: Application) : AndroidViewModel(applicati
     private fun reason(e: Exception): String =
         e.message?.takeIf { it.isNotBlank() } ?: text(R.string.error_unknown_reason)
 
+    val categories: List<String> = listOf(
+        text(R.string.category_lost),
+        text(R.string.category_found),
+        text(R.string.category_moment),
+        text(R.string.category_tip)
+    )
+
     fun loadPost(postId: String?) {
         if (postId.isNullOrBlank()) {
             _editingPost.value = null
@@ -49,9 +56,14 @@ class CreatePostViewModel(application: Application) : AndroidViewModel(applicati
         }
     }
 
-    fun submitPost(postId: String?, title: String, imageUri: Uri?) {
-        if (title.isBlank()) {
+    fun submitPost(postId: String?, title: String, category: String, imageUri: Uri?) {
+        val trimmedTitle = title.trim()
+        if (trimmedTitle.isBlank()) {
             _error.value = text(R.string.error_text_required)
+            return
+        }
+        if (trimmedTitle.length > MAX_POST_TEXT_LENGTH) {
+            _error.value = text(R.string.error_post_text_too_long, MAX_POST_TEXT_LENGTH)
             return
         }
 
@@ -61,7 +73,8 @@ class CreatePostViewModel(application: Application) : AndroidViewModel(applicati
             try {
                 val saved = repository.createOrUpdatePost(
                     postId = postId,
-                    title = title,
+                    title = trimmedTitle,
+                    category = category,
                     imageUri = imageUri
                 )
                 _savedPostId.value = saved.id
@@ -75,5 +88,9 @@ class CreatePostViewModel(application: Application) : AndroidViewModel(applicati
 
     fun clearSaveEvent() {
         _savedPostId.value = null
+    }
+
+    private companion object {
+        const val MAX_POST_TEXT_LENGTH = 280
     }
 }

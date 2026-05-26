@@ -25,6 +25,9 @@ class MyPostsViewModel(application: Application) : AndroidViewModel(application)
     private val _error = MutableLiveData<String?>(null)
     val error: LiveData<String?> = _error
 
+    private val _deleteSuccess = MutableLiveData(false)
+    val deleteSuccess: LiveData<Boolean> = _deleteSuccess
+
     private fun text(resId: Int, vararg args: Any): String =
         getApplication<Application>().getString(resId, *args)
 
@@ -53,13 +56,19 @@ class MyPostsViewModel(application: Application) : AndroidViewModel(application)
         viewModelScope.launch {
             _isLoading.value = true
             _error.value = null
+            _deleteSuccess.value = false
             try {
                 postRepository.deletePost(post)
+                _deleteSuccess.value = true
             } catch (e: Exception) {
                 _error.value = text(R.string.error_delete_post, reason(e))
             } finally {
                 _isLoading.value = false
             }
         }
+    }
+
+    fun clearDeleteSuccess() {
+        _deleteSuccess.value = false
     }
 }

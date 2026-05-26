@@ -29,6 +29,7 @@ class PostAdapter(
 
     class PostViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val titleView: TextView = itemView.findViewById(R.id.post_title)
+        private val categoryView: TextView = itemView.findViewById(R.id.post_category)
         private val imageView: ImageView = itemView.findViewById(R.id.post_image)
         private val editButton: Button = itemView.findViewById(R.id.edit_button)
         private val deleteButton: Button = itemView.findViewById(R.id.delete_button)
@@ -40,6 +41,7 @@ class PostAdapter(
             currentUserId: String?
         ) {
             titleView.text = post.title
+            categoryView.text = post.category.ifBlank { PostEntity.DEFAULT_CATEGORY }
 
             val hasLocalImage = ImageCache.existingFileOrNull(post.localImagePath) != null
             val hasRemoteImage = !post.imageUrl.isNullOrBlank()
