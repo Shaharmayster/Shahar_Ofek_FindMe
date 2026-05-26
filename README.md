@@ -13,7 +13,7 @@ SyncShare is an Android social app for sharing pet-inspired findings and moments
 - Shared social feed where users can view posts from other users
 - My Posts screen for editing and deleting personal posts
 - Profile management with display name and profile image editing
-- External dog breeds REST API integration
+- External cat image REST API integration
 - Offline caching with Room for posts, profiles, API data, and local image file paths
 - Glide image loading with local file preference and remote URL fallback
 - Material Design based UI with fragments and Navigation Component
@@ -121,7 +121,7 @@ See [SECURITY.md](SECURITY.md) for contributor security guidance.
 - Navigation uses the Navigation Graph with SafeArgs for screen transitions and post-edit arguments.
 - Posts are not only image captions: each post is classified as Lost or Found to support a pet/findings-oriented workflow rather than a generic photo feed.
 - Firebase is used as the remote backend, while Room and internal app storage provide local object and image caching.
-- The external API screen consumes `https://dog.ceo/api/breeds/list/all` and caches results in Room.
+- The external API screen consumes `https://api.thecatapi.com/v1/images/search?limit=12&mime_types=jpg,png` and caches image cards in Room.
 - Image uploads are validated locally and by Firebase Storage Rules for image MIME type and 5 MB maximum size.
 - Room schema changes use an explicit migration from version 4 to 5 for the post category column.
 

@@ -28,8 +28,8 @@ class ProfileFragment : Fragment() {
             selectedImageUri = it
             Glide.with(this)
                 .load(it)
-                .placeholder(R.drawable.bg_avatar_placeholder)
-                .error(R.drawable.bg_avatar_placeholder)
+                .placeholder(R.drawable.img_create_post_cat)
+                .error(R.drawable.img_create_post_cat)
                 .transition(DrawableTransitionOptions.withCrossFade())
                 .centerCrop()
                 .into(binding.profileImageView)
@@ -47,7 +47,7 @@ class ProfileFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.profileImageView.setImageResource(R.drawable.bg_avatar_placeholder)
+        binding.profileImageView.setImageResource(R.drawable.img_create_post_cat)
 
         binding.profileImageView.setOnClickListener {
             pickImage.launch("image/*")
@@ -81,10 +81,10 @@ class ProfileFragment : Fragment() {
                 binding.profileImageView.loadCachedImage(
                     localImagePath = profile?.localImagePath,
                     remoteImageUrl = profile?.imageUrl,
-                    placeholderResId = R.drawable.bg_avatar_placeholder
+                    placeholderResId = R.drawable.img_create_post_cat
                 )
             } else if (selectedImageUri == null && !hasSavedImage) {
-                binding.profileImageView.setImageResource(R.drawable.bg_avatar_placeholder)
+                binding.profileImageView.setImageResource(R.drawable.img_create_post_cat)
             }
         }
 

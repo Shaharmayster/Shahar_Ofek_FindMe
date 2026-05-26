@@ -54,14 +54,15 @@
     <string name="profile_image_desc">Profile image</string>
     <string name="default_profile_name">Pet Lover</string>
 
-    <string name="external_posts_button">Dog breeds</string>
-    <string name="api_screen_title">Dog breeds</string>
-    <string name="api_screen_subtitle">A lightweight public dog breeds API demo with local caching for a smoother offline experience.</string>
+    <string name="external_posts_button">Cat gallery</string>
+    <string name="api_screen_title">Cat gallery</string>
+    <string name="api_screen_subtitle">A lightweight public cat image API demo with local caching for a smoother offline experience.</string>
     <string name="api_empty_title">No data available</string>
     <string name="api_empty_message">Pull to refresh or retry once you have a connection again.</string>
     <string name="retry">Retry</string>
-    <string name="dog_breed">Dog breed</string>
-    <string name="dog_breed_fact">%1$s is a recognized dog breed.</string>
+    <string name="api_image_desc">Cat image from external API</string>
+    <string name="cat_gallery_item">Cat photo #%1$d</string>
+    <string name="cat_gallery_body">External image from TheCatAPI. Original size: %1$d x %2$d.</string>
 
     <string name="edit">Edit</string>
     <string name="delete">Delete</string>

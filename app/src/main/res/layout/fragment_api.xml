@@ -96,11 +96,13 @@
                 android:orientation="vertical"
                 android:padding="@dimen/space_6">
 
-                <ImageView
-                    android:layout_width="72dp"
-                    android:layout_height="56dp"
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:layout_width="160dp"
+                    android:layout_height="108dp"
                     android:contentDescription="@null"
-                    android:src="@drawable/ic_paw_print" />
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/img_create_post_cat"
+                    app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.FindMe.Media" />
 
                 <TextView
                     android:id="@+id/api_empty_text"

@@ -9,11 +9,14 @@ data class ApiPostEntity(
     @PrimaryKey val id: Int,
     val userId: Int,
     val title: String,
-    val body: String
+    val body: String,
+    val imageUrl: String = ""
 )
 
-/** DTO for the Dog CEO breed list endpoint. */
-data class AnimalFactsResponse(
-    val message: Map<String, List<String>> = emptyMap(),
-    val status: String = ""
+/** DTO for TheCatAPI image search endpoint. */
+data class CatImageDto(
+    val id: String = "",
+    val url: String = "",
+    val width: Int = 0,
+    val height: Int = 0
 )

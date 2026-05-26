@@ -19,18 +19,22 @@
         android:orientation="vertical"
         android:padding="@dimen/space_4">
 
-        <ImageView
-            android:layout_width="48dp"
-            android:layout_height="36dp"
-            android:alpha="0.85"
-            android:contentDescription="@null"
-            android:src="@drawable/ic_paw_print" />
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/api_post_image"
+            android:layout_width="match_parent"
+            android:layout_height="196dp"
+            android:contentDescription="@string/api_image_desc"
+            android:scaleType="centerCrop"
+            android:src="@drawable/img_create_post_cat"
+            app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.FindMe.Media"
+            app:strokeColor="@color/findme_outline"
+            app:strokeWidth="@dimen/card_stroke" />
 
         <TextView
             android:id="@+id/api_post_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/space_2"
+            android:layout_marginTop="@dimen/space_3"
             android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
             tools:text="Animal fact" />
 

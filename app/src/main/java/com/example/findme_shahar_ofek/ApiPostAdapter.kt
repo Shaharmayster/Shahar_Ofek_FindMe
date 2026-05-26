@@ -3,6 +3,7 @@ package com.example.findme_shahar_ofek
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
@@ -20,10 +21,16 @@ class ApiPostAdapter : ListAdapter<ApiPostEntity, ApiPostAdapter.ApiPostViewHold
     }
 
     class ApiPostViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        private val imageView: ImageView = itemView.findViewById(R.id.api_post_image)
         private val titleView: TextView = itemView.findViewById(R.id.api_post_title)
         private val bodyView: TextView = itemView.findViewById(R.id.api_post_body)
 
         fun bind(post: ApiPostEntity) {
+            imageView.loadCachedImage(
+                localImagePath = null,
+                remoteImageUrl = post.imageUrl,
+                placeholderResId = R.drawable.img_create_post_cat
+            )
             titleView.text = post.title
             bodyView.text = post.body
         }
