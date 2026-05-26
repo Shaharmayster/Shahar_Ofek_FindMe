@@ -1,0 +1,66 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function signedIn() {
+      return request.auth != null;
+    }
+
+    function ownsUserDocument(userId) {
+      return signedIn() && request.auth.uid == userId;
+    }
+
+    function validUserProfile(userId) {
+      return request.resource.data.keys().hasOnly([
+        'userId',
+        'email',
+        'displayName',
+        'imageUrl',
+        'updatedAt'
+      ])
+      && request.resource.data.userId == userId
+      && request.resource.data.email is string
+      && request.resource.data.displayName is string
+      && request.resource.data.displayName.size() <= 80
+      && (!('imageUrl' in request.resource.data) || request.resource.data.imageUrl == null || request.resource.data.imageUrl is string)
+      && request.resource.data.updatedAt is int;
+    }
+
+    function validPost() {
+      return request.resource.data.keys().hasOnly([
+        'id',
+        'userId',
+        'title',
+        'imageUrl',
+        'createdAt'
+      ])
+      && request.resource.data.id == request.resource.id
+      && request.resource.data.userId == request.auth.uid
+      && request.resource.data.title is string
+      && request.resource.data.title.size() > 0
+      && request.resource.data.title.size() <= 280
+      && (!('imageUrl' in request.resource.data) || request.resource.data.imageUrl == null || request.resource.data.imageUrl is string)
+      && request.resource.data.createdAt is int;
+    }
+
+    match /users/{userId} {
+      allow read: if ownsUserDocument(userId);
+      allow create, update: if ownsUserDocument(userId) && validUserProfile(userId);
+      allow delete: if false;
+    }
+
+    match /posts/{postId} {
+      allow read: if signedIn();
+      allow create: if signedIn() && validPost();
+      allow update: if signedIn()
+        && resource.data.userId == request.auth.uid
+        && validPost()
+        && request.resource.data.createdAt == resource.data.createdAt;
+      allow delete: if signedIn() && resource.data.userId == request.auth.uid;
+    }
+
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
