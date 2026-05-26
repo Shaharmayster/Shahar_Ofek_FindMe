@@ -50,7 +50,7 @@ The app follows MVVM with a repository layer:
 - Register
 - Splash
 
-## How to Run
+## Local Setup
 
 1. Clone the repository:
 
@@ -58,17 +58,58 @@ The app follows MVVM with a repository layer:
    git clone https://github.com/Shaharmayster/Shahar_Ofek_FindMe.git
    ```
 
-2. Open the project in Android Studio.
+2. Create or open a Firebase project.
 
-3. Add the Firebase configuration file:
+3. Add an Android app in Firebase with this package name:
+
+   ```text
+   com.example.findme_shahar_ofek
+   ```
+
+4. Enable Email/Password sign-in in Firebase Authentication.
+
+5. Download the Firebase Android configuration file and place it here:
 
    ```text
    app/google-services.json
    ```
 
-4. Sync Gradle.
+   This file is intentionally ignored by git and must stay local.
 
-5. Run the app on an emulator or Android device.
+6. Deploy the checked-in Firebase rules before using a shared backend:
+
+   ```bash
+   firebase deploy --only firestore:rules,storage
+   ```
+
+7. Open the project in Android Studio and sync Gradle.
+
+## Running Locally
+
+1. Start an Android emulator from Android Studio Device Manager, or use an attached Android device.
+
+2. Confirm that a device is available:
+
+   ```bash
+   adb devices
+   ```
+
+3. Build, install, and launch the debug app:
+
+   ```bash
+   ./gradlew :app:installDebug
+   adb shell monkey -p com.example.findme_shahar_ofek -c android.intent.category.LAUNCHER 1
+   ```
+
+## Firebase Security
+
+- `firestore.rules` requires authenticated users.
+- User profile documents under `users/{uid}` are readable and writable only by that user.
+- Posts are readable by authenticated users for the shared feed.
+- Post creates, updates, and deletes are restricted to the post owner.
+- `storage.rules` restricts profile and post uploads to authenticated owners and only allows image uploads under 5 MB.
+
+See [SECURITY.md](SECURITY.md) for contributor security guidance.
 
 ## Notes
 
