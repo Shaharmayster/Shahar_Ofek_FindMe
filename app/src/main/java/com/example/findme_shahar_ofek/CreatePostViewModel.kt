@@ -32,9 +32,7 @@ class CreatePostViewModel(application: Application) : AndroidViewModel(applicati
 
     val categories: List<String> = listOf(
         text(R.string.category_lost),
-        text(R.string.category_found),
-        text(R.string.category_moment),
-        text(R.string.category_tip)
+        text(R.string.category_found)
     )
 
     fun loadPost(postId: String?) {

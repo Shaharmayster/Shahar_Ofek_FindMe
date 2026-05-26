@@ -53,7 +53,7 @@ class CreatePostFragment : Fragment() {
 
         setupCategoryChips()
         viewModel.loadPost(args.postId)
-        binding.postImageView.setImageResource(R.drawable.bg_media_placeholder)
+        binding.postImageView.setImageResource(R.drawable.img_create_post_cat)
 
         binding.postImageView.setOnClickListener {
             pickImage.launch("image/*")
@@ -89,7 +89,7 @@ class CreatePostFragment : Fragment() {
             } else {
                 binding.submitButton.text = getString(R.string.submit)
                 if (selectedImageUri == null) {
-                    binding.postImageView.setImageResource(R.drawable.bg_media_placeholder)
+                    binding.postImageView.setImageResource(R.drawable.img_create_post_cat)
                 }
             }
         }

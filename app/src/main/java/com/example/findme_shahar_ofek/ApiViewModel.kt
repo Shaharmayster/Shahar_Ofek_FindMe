@@ -23,6 +23,9 @@ class ApiViewModel(application: Application) : AndroidViewModel(application) {
     private fun text(resId: Int, vararg args: Any): String =
         getApplication<Application>().getString(resId, *args)
 
+    private fun reason(e: Exception): String =
+        e.message?.takeIf { it.isNotBlank() } ?: text(R.string.error_unknown_reason)
+
     init {
         refresh()
     }
@@ -36,7 +39,7 @@ class ApiViewModel(application: Application) : AndroidViewModel(application) {
             try {
                 repository.refreshPosts()
             } catch (e: Exception) {
-                _error.value = text(R.string.error_network_cached)
+                _error.value = text(R.string.error_network_cached, reason(e))
             } finally {
                 _isLoading.value = false
             }

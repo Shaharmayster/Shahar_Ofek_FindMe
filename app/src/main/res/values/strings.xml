@@ -32,8 +32,6 @@
     <string name="post_category_label">Post category</string>
     <string name="category_lost">Lost</string>
     <string name="category_found">Found</string>
-    <string name="category_moment">Moment</string>
-    <string name="category_tip">Tip</string>
     <string name="post_text_hint">Write a short caption</string>
     <string name="add_photo_hint">Tap the image area to choose a photo</string>
     <string name="submit">Publish post</string>
@@ -77,7 +75,7 @@
     <string name="error_text_required">Post text is required.</string>
     <string name="error_post_text_too_long">Post text must be %1$d characters or fewer.</string>
     <string name="error_save_post">Failed to save post: %1$s</string>
-    <string name="error_network_cached">Network unavailable. Showing cached data.</string>
+    <string name="error_network_cached">Network unavailable. Showing cached data. Reason: %1$s</string>
     <string name="error_load_profile">Failed to load profile: %1$s</string>
     <string name="error_save_profile">Failed to save profile: %1$s</string>
     <string name="error_display_name_required">Display name is required.</string>

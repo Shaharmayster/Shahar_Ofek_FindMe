@@ -19,6 +19,6 @@ data class PostEntity(
     val createdAt: Long = System.currentTimeMillis()
 ) : Parcelable {
     companion object {
-        const val DEFAULT_CATEGORY = "Moment"
+        const val DEFAULT_CATEGORY = "Lost"
     }
 }

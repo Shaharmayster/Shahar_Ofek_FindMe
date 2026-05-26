@@ -12,12 +12,7 @@ data class ApiPostEntity(
     val body: String
 )
 
-/** DTOs for animal facts endpoint (JSON:API format). */
+/** DTO for the MeowFacts endpoint. */
 data class AnimalFactsResponse(
-    val data: List<AnimalFactDto> = emptyList()
-)
-
-data class AnimalFactDto(
-    val fact: String = "",
-    val length: Int = 0
+    val data: List<String> = emptyList()
 )

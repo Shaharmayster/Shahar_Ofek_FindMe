@@ -78,7 +78,7 @@
                         android:layout_height="220dp"
                         android:contentDescription="@string/create_post_image_desc"
                         android:scaleType="centerCrop"
-                        android:src="@drawable/bg_media_placeholder"
+                        android:src="@drawable/img_create_post_cat"
                         app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.FindMe.Media"
                         app:strokeColor="@color/findme_outline"
                         app:strokeWidth="@dimen/card_stroke" />
