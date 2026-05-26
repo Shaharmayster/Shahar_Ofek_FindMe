@@ -44,6 +44,7 @@ class ProfileRepository(
         var localImagePath = current.localImagePath
 
         if (imageUri != null) {
+            ImageCache.validateImageForUpload(appContext, imageUri)
             localImagePath = ImageCache.saveInternalCopy(appContext, imageUri, "profiles")
             if (current.localImagePath != null && current.localImagePath != localImagePath) {
                 ImageCache.deleteIfInternal(current.localImagePath)

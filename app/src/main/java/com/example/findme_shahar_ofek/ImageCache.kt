@@ -7,6 +7,22 @@ import java.util.UUID
 
 /** Stores user-selected images in internal storage so Room can reference them offline. */
 object ImageCache {
+    private const val MAX_UPLOAD_BYTES = 5L * 1024L * 1024L
+
+    fun validateImageForUpload(context: Context, uri: Uri) {
+        val mimeType = context.contentResolver.getType(uri)
+        require(mimeType?.startsWith("image/") == true) {
+            "Selected file must be an image."
+        }
+
+        val size = context.contentResolver.openAssetFileDescriptor(uri, "r").use { descriptor ->
+            descriptor?.length ?: -1L
+        }
+        require(size < 0 || size <= MAX_UPLOAD_BYTES) {
+            "Selected image must be 5 MB or smaller."
+        }
+    }
+
     fun saveInternalCopy(context: Context, uri: Uri, folderName: String): String {
         val cacheDir = File(context.filesDir, "image_cache/$folderName").apply {
             if (!exists()) mkdirs()

@@ -36,7 +36,7 @@ class PostRepository(
             val cached = postDao.getById(remote.id)
             remote.copy(localImagePath = cached?.localImagePath)
         }
-        postDao.insertAll(posts)
+        postDao.replaceAll(posts)
     }
 
     suspend fun getPostById(postId: String): PostEntity? = withContext(ioDispatcher) {
@@ -53,11 +53,16 @@ class PostRepository(
         val userId = authRepository.currentUserId()
             ?: error(appContext.getString(R.string.error_user_not_logged_in))
         val existing = postId?.let { getPostById(it) }
+        if (postId != null) {
+            requireNotNull(existing) { "Post does not exist." }
+            require(existing.userId == userId) { "Only the post owner can edit this post." }
+        }
         val resolvedPostId = postId ?: UUID.randomUUID().toString()
 
         var imageUrl: String? = existing?.imageUrl
         var localImagePath: String? = existing?.localImagePath
         if (imageUri != null) {
+            ImageCache.validateImageForUpload(appContext, imageUri)
             localImagePath = ImageCache.saveInternalCopy(appContext, imageUri, "posts")
             if (existing?.localImagePath != null && existing.localImagePath != localImagePath) {
                 ImageCache.deleteIfInternal(existing.localImagePath)
@@ -80,6 +85,10 @@ class PostRepository(
     }
 
     suspend fun deletePost(post: PostEntity) = withContext(ioDispatcher) {
+        val userId = authRepository.currentUserId()
+            ?: error(appContext.getString(R.string.error_user_not_logged_in))
+        require(post.userId == userId) { "Only the post owner can delete this post." }
+
         firestore.collection(POSTS_COLLECTION).document(post.id).delete().await()
         postDao.deleteById(post.id)
         ImageCache.deleteIfInternal(post.localImagePath)

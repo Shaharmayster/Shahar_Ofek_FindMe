@@ -4,6 +4,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import androidx.room.Transaction
 import kotlinx.coroutines.flow.Flow
 
 /** Room access for app posts cache. */
@@ -20,6 +21,12 @@ interface PostDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAll(posts: List<PostEntity>)
+
+    @Transaction
+    suspend fun replaceAll(posts: List<PostEntity>) {
+        deleteAll()
+        insertAll(posts)
+    }
 
     @Query("DELETE FROM posts WHERE id = :postId")
     suspend fun deleteById(postId: String)
