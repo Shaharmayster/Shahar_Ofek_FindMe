@@ -31,12 +31,22 @@ class ApiRepository(
     fun observePosts(): Flow<List<ApiPostEntity>> = apiPostDao.observeAll()
 
     suspend fun refreshPosts() = withContext(ioDispatcher) {
-        val response = apiService.getAnimalFacts(count = 20)
-        val entities = response.data.take(20).mapIndexed { index, fact ->
+        val response = apiService.getAnimalFacts()
+        val facts = response.message.toSortedMap().flatMap { (breed, subBreeds) ->
+            if (subBreeds.isEmpty()) {
+                listOf(appContext.getString(R.string.dog_breed_fact, breed.replaceFirstChar { it.uppercase() }))
+            } else {
+                subBreeds.sorted().map { subBreed ->
+                    val name = "${subBreed.replaceFirstChar { it.uppercase() }} ${breed.replaceFirstChar { it.uppercase() }}"
+                    appContext.getString(R.string.dog_breed_fact, name)
+                }
+            }
+        }
+        val entities = facts.take(20).mapIndexed { index, fact ->
             ApiPostEntity(
                 id = index + 1,
                 userId = 0,
-                title = appContext.getString(R.string.cat_fact),
+                title = appContext.getString(R.string.dog_breed),
                 body = fact
             )
         }

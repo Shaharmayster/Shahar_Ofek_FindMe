@@ -91,6 +91,52 @@
                         android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
                         android:textColor="@color/findme_on_surface_variant" />
 
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/preset_images_button"
+                        style="@style/Widget.FindMe.Button.Secondary"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/space_3"
+                        android:text="@string/use_preset_image" />
+
+                    <HorizontalScrollView
+                        android:id="@+id/preset_images_scroll"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/space_3"
+                        android:scrollbars="none"
+                        android:visibility="gone">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <com.google.android.material.imageview.ShapeableImageView
+                                android:id="@+id/preset_cat_image"
+                                android:layout_width="132dp"
+                                android:layout_height="92dp"
+                                android:layout_marginEnd="@dimen/space_3"
+                                android:contentDescription="@string/preset_cat_desc"
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/img_create_post_cat"
+                                app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.FindMe.Media"
+                                app:strokeColor="@color/findme_outline"
+                                app:strokeWidth="@dimen/card_stroke" />
+
+                            <com.google.android.material.imageview.ShapeableImageView
+                                android:id="@+id/preset_dog_image"
+                                android:layout_width="132dp"
+                                android:layout_height="92dp"
+                                android:contentDescription="@string/preset_dog_desc"
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/img_create_post_dog"
+                                app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.FindMe.Media"
+                                app:strokeColor="@color/findme_outline"
+                                app:strokeWidth="@dimen/card_stroke" />
+                        </LinearLayout>
+                    </HorizontalScrollView>
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"

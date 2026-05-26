@@ -12,7 +12,8 @@ data class ApiPostEntity(
     val body: String
 )
 
-/** DTO for the MeowFacts endpoint. */
+/** DTO for the Dog CEO breed list endpoint. */
 data class AnimalFactsResponse(
-    val data: List<String> = emptyList()
+    val message: Map<String, List<String>> = emptyMap(),
+    val status: String = ""
 )

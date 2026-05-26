@@ -11,7 +11,8 @@ object ImageCache {
 
     fun validateImageForUpload(context: Context, uri: Uri) {
         val mimeType = context.contentResolver.getType(uri)
-        require(mimeType?.startsWith("image/") == true) {
+        val isBundledImage = uri.scheme == "android.resource"
+        require(isBundledImage || mimeType?.startsWith("image/") == true) {
             "Selected file must be an image."
         }
 

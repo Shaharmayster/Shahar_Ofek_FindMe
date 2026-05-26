@@ -9,6 +9,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
+import java.io.File
 
 /** Owns profile cache, sync, and edit operations for the logged-in user. */
 class ProfileRepository(
@@ -50,7 +51,7 @@ class ProfileRepository(
                 ImageCache.deleteIfInternal(current.localImagePath)
             }
             val ref = storage.reference.child("profiles/$userId.jpg")
-            ref.putFile(imageUri).await()
+            ref.putFile(Uri.fromFile(File(localImagePath))).await()
             imageUrl = ref.downloadUrl.await().toString()
         }
 

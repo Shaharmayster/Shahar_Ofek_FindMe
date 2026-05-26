@@ -52,6 +52,7 @@ class CreatePostFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setupCategoryChips()
+        setupPresetImages()
         viewModel.loadPost(args.postId)
         binding.postImageView.setImageResource(R.drawable.img_create_post_cat)
 
@@ -98,8 +99,11 @@ class CreatePostFragment : Fragment() {
             binding.progressBar.isVisible = loading
             binding.submitButton.isEnabled = !loading
             binding.cancelButton.isEnabled = !loading
+            binding.presetImagesButton.isEnabled = !loading
             binding.titleEditText.isEnabled = !loading
             binding.postImageView.isEnabled = !loading
+            binding.presetCatImage.isEnabled = !loading
+            binding.presetDogImage.isEnabled = !loading
         }
 
         viewModel.error.observe(viewLifecycleOwner) { error ->
@@ -130,6 +134,24 @@ class CreatePostFragment : Fragment() {
             binding.categoryChipGroup.addView(chip)
         }
         selectCategory(PostEntity.DEFAULT_CATEGORY)
+    }
+
+    private fun setupPresetImages() {
+        binding.presetImagesButton.setOnClickListener {
+            binding.presetImagesScroll.isVisible = !binding.presetImagesScroll.isVisible
+        }
+        binding.presetCatImage.setOnClickListener {
+            selectPresetImage(R.drawable.img_create_post_cat)
+        }
+        binding.presetDogImage.setOnClickListener {
+            selectPresetImage(R.drawable.img_create_post_dog)
+        }
+    }
+
+    private fun selectPresetImage(drawableResId: Int) {
+        selectedImageUri = Uri.parse("android.resource://${requireContext().packageName}/$drawableResId")
+        binding.postImageView.setImageResource(drawableResId)
+        Snackbar.make(binding.root, R.string.preset_image_selected, Snackbar.LENGTH_SHORT).show()
     }
 
     private fun selectedCategory(): String {

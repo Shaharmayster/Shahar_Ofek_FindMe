@@ -34,6 +34,10 @@
     <string name="category_found">Found</string>
     <string name="post_text_hint">Write a short caption</string>
     <string name="add_photo_hint">Tap the image area to choose a photo</string>
+    <string name="use_preset_image">Use ready pet photo</string>
+    <string name="preset_cat_desc">Ready cat photo</string>
+    <string name="preset_dog_desc">Ready dog photo</string>
+    <string name="preset_image_selected">Ready pet photo selected.</string>
     <string name="submit">Publish post</string>
     <string name="update">Update post</string>
     <string name="back">Back</string>
@@ -50,13 +54,14 @@
     <string name="profile_image_desc">Profile image</string>
     <string name="default_profile_name">Pet Lover</string>
 
-    <string name="external_posts_button">Animal facts</string>
-    <string name="api_screen_title">Animal facts</string>
-    <string name="api_screen_subtitle">A lightweight public cat facts API demo with local caching for a smoother offline experience.</string>
+    <string name="external_posts_button">Dog breeds</string>
+    <string name="api_screen_title">Dog breeds</string>
+    <string name="api_screen_subtitle">A lightweight public dog breeds API demo with local caching for a smoother offline experience.</string>
     <string name="api_empty_title">No data available</string>
     <string name="api_empty_message">Pull to refresh or retry once you have a connection again.</string>
     <string name="retry">Retry</string>
-    <string name="cat_fact">Cat fact</string>
+    <string name="dog_breed">Dog breed</string>
+    <string name="dog_breed_fact">%1$s is a recognized dog breed.</string>
 
     <string name="edit">Edit</string>
     <string name="delete">Delete</string>

@@ -10,6 +10,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
+import java.io.File
 import java.util.UUID
 
 /** Owns post data flow, remote sync, and create/edit/delete actions. */
@@ -73,7 +74,7 @@ class PostRepository(
             if (existing?.localImagePath != null && existing.localImagePath != localImagePath) {
                 ImageCache.deleteIfInternal(existing.localImagePath)
             }
-            imageUrl = uploadPostImage(userId, imageUri)
+            imageUrl = uploadPostImage(userId, Uri.fromFile(File(localImagePath)))
         }
 
         val post = PostEntity(
