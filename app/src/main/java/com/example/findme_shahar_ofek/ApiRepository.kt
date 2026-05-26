@@ -28,8 +28,8 @@ class ApiRepository(
             ApiPostEntity(
                 id = index + 1,
                 userId = 0,
-                title = appContext.getString(R.string.animal_fact),
-                body = dto.attributes.fact
+                title = appContext.getString(R.string.cat_fact),
+                body = dto.fact
             )
         }
         apiPostDao.deleteAll()

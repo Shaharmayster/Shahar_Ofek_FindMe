@@ -2,7 +2,6 @@ package com.example.findme_shahar_ofek
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.google.gson.annotations.SerializedName
 
 /** Room entity for cached animal facts shown in the API screen. */
 @Entity(tableName = "api_posts")
@@ -19,11 +18,6 @@ data class AnimalFactsResponse(
 )
 
 data class AnimalFactDto(
-    val id: String = "",
-    val type: String = "",
-    val attributes: AnimalFactAttributes = AnimalFactAttributes()
-)
-
-data class AnimalFactAttributes(
-    @SerializedName("body") val fact: String = ""
+    val fact: String = "",
+    val length: Int = 0
 )

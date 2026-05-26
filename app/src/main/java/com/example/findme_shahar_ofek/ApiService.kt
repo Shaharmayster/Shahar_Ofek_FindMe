@@ -5,10 +5,10 @@ import retrofit2.http.Query
 
 /** Retrofit contract for sample REST endpoint. */
 interface ApiService {
-    @GET("api/v2/facts")
+    @GET("facts")
     suspend fun getAnimalFacts(@Query("limit") limit: Int = 20): AnimalFactsResponse
 
     companion object {
-        const val BASE_URL = "https://dogapi.dog/"
+        const val BASE_URL = "https://catfact.ninja/"
     }
 }

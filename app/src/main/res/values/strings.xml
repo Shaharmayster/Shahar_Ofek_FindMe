@@ -54,11 +54,11 @@
 
     <string name="external_posts_button">Animal facts</string>
     <string name="api_screen_title">Animal facts</string>
-    <string name="api_screen_subtitle">A lightweight public API demo with local caching for a smoother offline experience.</string>
+    <string name="api_screen_subtitle">A lightweight public cat facts API demo with local caching for a smoother offline experience.</string>
     <string name="api_empty_title">No data available</string>
     <string name="api_empty_message">Pull to refresh or retry once you have a connection again.</string>
     <string name="retry">Retry</string>
-    <string name="animal_fact">Animal fact</string>
+    <string name="cat_fact">Cat fact</string>
 
     <string name="edit">Edit</string>
     <string name="delete">Delete</string>
