@@ -14,12 +14,17 @@ captures/
 .externalNativeBuild/
 .cxx/
 
-# OS and logs
-.DS_Store
-*.log
+# Signing keys
+*.keystore
+*.jks
 
-# Firebase local backup files
-app/google-services.json
+# Firebase local configuration
+google-services.json
+**/google-services.json
 google-services*.bak
 google-services*.backup
 google-services*.old
+
+# OS and logs
+.DS_Store
+*.log
